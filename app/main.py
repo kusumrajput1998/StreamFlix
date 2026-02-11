@@ -6,7 +6,7 @@ from app.routes import movies
 app = FastAPI(title="StreamFlix API")
 
 # Commented because DB not running yet
-# Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 app.include_router(movies.router)
 
