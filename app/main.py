@@ -16,4 +16,7 @@ app.mount("/", StaticFiles(directory="static", html=True), name="static")
 def health():
     return {"status": "healthy"}
 
+@app.get("/hello")
+def hello():
+    return {"message": "New deployment working!"}
 
