@@ -2,48 +2,24 @@
 <html>
 <head>
     <title>StreamFlix</title>
-    <style>
-        body {
-            background-color: #141414;
-            color: white;
-            font-family: Arial;
-        }
-        h1 {
-            color: red;
-        }
-        .movies {
-            display: flex;
-            gap: 20px;
-        }
-        .card {
-            background: #222;
-            padding: 15px;
-            border-radius: 8px;
-            width: 200px;
-        }
-        .card h3 {
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>🎬 StreamFlix</h1>
-    <div class="movies" id="movies"></div>
 
-    <script>
-        fetch("/movies/")
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById("movies");
-                data.forEach(movie => {
-                    container.innerHTML += `
-                        <div class="card">
-                            <h3>${movie.title}</h3>
-                            <p>${movie.description}</p>
-                        </div>
-                    `;
-                });
-            });
-    </script>
-</body>
-</html>
+    <header>
+        <h1 class="logo">StreamFlix</h1>
+    </header>
+
+    <section class="banner">
+        <h2>Unlimited Movies, TV Shows and More</h2>
+        <p>Watch anywhere. Cancel anytime.</p>
+    </section>
+
+    <section class="movies">
+        <h2>Trending Now</h2>
+        <div class="movie-row">
+            <div class="movie-card">Movie 1</div>
+            <div class="movie-card">Movie 2</div>
+            <div class="movie-card">Movie 3</div>
+            <div class="movie-ca
+
