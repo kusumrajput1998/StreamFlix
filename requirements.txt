@@ -3,4 +3,5 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 pydantic
-# test webhook 1
+python-jose
+passlib[bcrypt]
