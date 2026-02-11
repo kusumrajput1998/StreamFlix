@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StreamFlix</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: white;
+            font-family: Arial;
+        }
+        h1 {
+            color: red;
+        }
+        .movies {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            width: 200px;
+        }
+        .card h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 StreamFlix</h1>
+    <div class="movies" id="movies"></div>
+
+    <script>
+        fetch("/movies/")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("movies");
+                data.forEach(movie => {
+                    container.innerHTML += `
+                        <div class="card">
+                            <h3>${movie.title}</h3>
+                            <p>${movie.description}</p>
+                        </div>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>
