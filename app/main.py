@@ -1,17 +1,15 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from app.database import engine, Base
-from app.routes import movies
+from app.models import Movie
+from app.database import SessionLocal
 
-app = FastAPI(title="StreamFlix API")
+@app.on_event("startup")
+def seed_data():
+    db = SessionLocal()
+    if db.query(Movie).count() == 0:
+        db.add_all([
+            Movie(title="Inception", description="Sci-fi thriller", banner_url=""),
+            Movie(title="Interstellar", description="Space drama", banner_url=""),
+            Movie(title="The Dark Knight", description="Batman movie", banner_url=""),
+        ])
+        db.commit()
+    db.close()
 
-# Create tables
-Base.metadata.create_all(bind=engine)
-
-app.include_router(movies.router)
-
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
-
-@app.get("/health")
-def health():
-    return {"status": "healthy"}

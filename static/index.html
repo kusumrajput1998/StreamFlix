@@ -17,13 +17,23 @@
 
     <section class="movies">
         <h2>Trending Now</h2>
-        <div class="movie-row">
-            <div class="movie-card">Movie 1</div>
-            <div class="movie-card">Movie 2</div>
-            <div class="movie-card">Movie 3</div>
-            <div class="movie-card">Movie 4</div>
-        </div>
+        <div class="movie-row" id="movieRow"></div>
     </section>
+    
+    <script>
+    fetch("/movies")
+        .then(response => response.json())
+        .then(data => {
+            const movieRow = document.getElementById("movieRow");
+            data.forEach(movie => {
+                const div = document.createElement("div");
+                div.className = "movie-card";
+                div.innerText = movie.title;
+                movieRow.appendChild(div);
+            });
+        });
+    </script>
+    
 
 </body>
 </html>
